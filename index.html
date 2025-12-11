@@ -1,0 +1,972 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مشروع مؤسسة تجارية صغيرة قابلة للنمو</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary-blue: #0066CC;
+            --secondary-blue: #0099FF;
+            --light-blue: #66CCFF;
+            --accent-orange: #FF6600;
+            --accent-yellow: #FFCC00;
+            --dark-blue: #003366;
+            --text-color: #333333;
+            --light-bg: #F5F9FF;
+        }
+        
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* الترويسة والتنقل */
+        header {
+            background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue));
+            color: white;
+            padding: 20px 0;
+            border-bottom: 5px solid var(--accent-yellow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, var(--secondary-blue), var(--accent-orange));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 36px;
+            font-weight: bold;
+            animation: rotate 10s linear infinite;
+            box-shadow: 0 0 20px rgba(0, 153, 255, 0.5);
+        }
+        
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .logo-text span {
+            color: var(--accent-yellow);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        nav a.active {
+            background-color: var(--accent-yellow);
+            color: var(--dark-blue);
+        }
+        
+        /* المحتوى الرئيسي */
+        main {
+            min-height: calc(100vh - 200px);
+        }
+        
+        .page {
+            display: none;
+            padding: 30px 20px;
+            animation: fadeIn 0.8s ease;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        h1 {
+            color: var(--primary-blue);
+            font-size: 36px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--accent-yellow);
+            display: inline-block;
+        }
+        
+        h2 {
+            color: var(--dark-blue);
+            font-size: 28px;
+            margin: 25px 0 15px;
+            padding-right: 10px;
+            border-right: 4px solid var(--secondary-blue);
+        }
+        
+        h3 {
+            color: var(--primary-blue);
+            font-size: 22px;
+            margin: 20px 0 10px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        
+        /* الجداول */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            animation: slideIn 0.5s ease;
+        }
+        
+        thead {
+            background: linear-gradient(to right, var(--primary-blue), var(--secondary-blue));
+            color: white;
+        }
+        
+        th, td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            font-size: 18px;
+        }
+        
+        tbody tr {
+            transition: background-color 0.3s;
+        }
+        
+        tbody tr:nth-child(even) {
+            background-color: rgba(102, 204, 255, 0.1);
+        }
+        
+        tbody tr:hover {
+            background-color: rgba(255, 204, 0, 0.2);
+            transform: scale(1.01);
+            transition: all 0.3s ease;
+        }
+        
+        /* القوائم */
+        ul {
+            margin-right: 30px;
+            margin-bottom: 20px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+            font-size: 18px;
+            padding-right: 10px;
+        }
+        
+        /* الأقسام المميزة */
+        .highlight-box {
+            background: linear-gradient(to right, rgba(0, 102, 204, 0.1), rgba(102, 204, 255, 0.1));
+            border-right: 5px solid var(--accent-orange);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            animation: pulse 2s infinite;
+        }
+        
+        /* مخطط جانت الافتراضي */
+        .gantt-chart {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 25px 0;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
+        }
+        
+        .gantt-bar {
+            height: 40px;
+            background: linear-gradient(to right, var(--secondary-blue), var(--light-blue));
+            margin: 15px 0;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            padding-right: 20px;
+            color: white;
+            font-weight: bold;
+            position: relative;
+            animation: expandWidth 1.5s ease-out;
+        }
+        
+        .gantt-bar span {
+            position: absolute;
+            left: 20px;
+        }
+        
+        /* التذييل */
+        footer {
+            background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue));
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+            border-top: 5px solid var(--accent-yellow);
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .footer-logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: var(--accent-yellow);
+        }
+        
+        /* التحريكيات */
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); }
+            50% { box-shadow: 0 5px 20px rgba(255, 102, 0, 0.2); }
+            100% { box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); }
+        }
+        
+        @keyframes expandWidth {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        
+        /* تصميم متجاوب */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
+            
+            h1 {
+                font-size: 28px;
+            }
+            
+            h2 {
+                font-size: 24px;
+            }
+            
+            table {
+                font-size: 14px;
+            }
+            
+            th, td {
+                padding: 10px 5px;
+            }
+        }
+        
+        /* أزرار التنقل بين الصفحات */
+        .page-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+        
+        .nav-btn {
+            background: linear-gradient(to right, var(--primary-blue), var(--secondary-blue));
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(0, 102, 204, 0.3);
+        }
+        
+        .nav-btn.prev {
+            background: linear-gradient(to right, var(--dark-blue), var(--primary-blue));
+        }
+        
+        /* مؤشر الصفحات */
+        .page-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .indicator-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #ccc;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .indicator-dot.active {
+            background-color: var(--primary-blue);
+            transform: scale(1.3);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo-container">
+                <div class="logo">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="logo-text">
+                    مؤسسة <span>التوزيع</span> الذكي
+                </div>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="#" class="nav-link active" data-page="page1">الصفحة 1</a></li>
+                    <li><a href="#" class="nav-link" data-page="page2">الصفحة 2</a></li>
+                    <li><a href="#" class="nav-link" data-page="page3">الصفحة 3</a></li>
+                    <li><a href="#" class="nav-link" data-page="page4">الصفحة 4</a></li>
+                    <li><a href="#" class="nav-link" data-page="page5">الصفحة 5</a></li>
+                    <li><a href="#" class="nav-link" data-page="page6">الصفحة 6</a></li>
+                </ul>
+            </nav>
+        </div>
+        
+        <div class="page-indicator">
+            <div class="indicator-dot active" data-page="page1"></div>
+            <div class="indicator-dot" data-page="page2"></div>
+            <div class="indicator-dot" data-page="page3"></div>
+            <div class="indicator-dot" data-page="page4"></div>
+            <div class="indicator-dot" data-page="page5"></div>
+            <div class="indicator-dot" data-page="page6"></div>
+        </div>
+    </header>
+    
+    <main class="container">
+        <!-- الصفحة 1: تأسيس المؤسسة ودراسة السوق -->
+        <section id="page1" class="page active">
+            <h1><i class="fas fa-building"></i> الصفحة 1: تأسيس المؤسسة ودراسة السوق</h1>
+            
+            <div class="highlight-box">
+                <h2>1. تعريف المشروع وأهدافه</h2>
+                <p><strong>المشروع:</strong> تأسيس مؤسسة توزيع صغيرة تعمل على سد فجوات السوق في المناطق غير المخدومة بالكامل.</p>
+                
+                <h3>الأهداف:</h3>
+                <ul>
+                    <li>إنشاء هيكل تشغيلي محدود (مكتب، مستودع، فريق صغير).</li>
+                    <li>تحقيق تغطية توزيعية في مناطق محددة (مثل ديار ينبع والعيص).</li>
+                    <li>تحقيق ربحية من خلال منتجات سريعة الدوران.</li>
+                </ul>
+            </div>
+            
+            <div>
+                <h2>2. دراسة السوق وتحليل الفجوات</h2>
+                <p><strong>المنهجية:</strong> زيارة ميدانية للمحلات وتحليل العرض والطلب.</p>
+                
+                <h3>النتائج:</h3>
+                <ul>
+                    <li>وجود منتجات غير مغطاة بالكامل.</li>
+                    <li>مناطق لا تصلها خدمات التوزيع الكبرى.</li>
+                    <li>فرص لدخول السوق بمنتجات أساسية (مياه، بيض، مواد سريعة الاستهلاك).</li>
+                </ul>
+            </div>
+            
+            <div>
+                <h2>3. عناصر مثلث إدارة المشروع الأولي</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>العنصر</th>
+                            <th>التقدير الأولي</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>النطاق</td>
+                            <td>توزيع ٥٠٠ كرتون مشروب يومياً</td>
+                        </tr>
+                        <tr>
+                            <td>الزمن</td>
+                            <td>٦ أشهر للبدء التشغيلي</td>
+                        </tr>
+                        <tr>
+                            <td>التكلفة</td>
+                            <td>رأس المال المبدئي: ٢٠٠٠٠٠ ريال</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="page-nav">
+                <button class="nav-btn prev disabled" disabled><i class="fas fa-arrow-right"></i> السابق</button>
+                <button class="nav-btn next" data-next="page2">التالي <i class="fas fa-arrow-left"></i></button>
+            </div>
+        </section>
+        
+        <!-- الصفحة 2: الهيكل التنظيمي وتعيين الموارد -->
+        <section id="page2" class="page">
+            <h1><i class="fas fa-sitemap"></i> الصفحة 2: الهيكل التنظيمي وتعيين الموارد</h1>
+            
+            <div>
+                <h2>1. الهيكل الإداري الأولي</h2>
+                <ul>
+                    <li>مدير المشروع</li>
+                    <li>مندوبا مبيعات (بسيارتين مؤجرتين)</li>
+                    <li>عامل مستودع</li>
+                    <li>حارس أمن</li>
+                    <li>منسق طلبات</li>
+                </ul>
+            </div>
+            
+            <div>
+                <h2>2. خطة الموارد (Resource Plan)</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>نوع المورد</th>
+                            <th>التفاصيل</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>موارد بشرية</td>
+                            <td>الفريق المذكور (6 أفراد)</td>
+                        </tr>
+                        <tr>
+                            <td>موارد مادية</td>
+                            <td>مكتب، مستودع، سيارات مؤجرة، رفوف مستأجرة في الأسواق</td>
+                        </tr>
+                        <tr>
+                            <td>موارد تقنية</td>
+                            <td>نظام بسيط لتسجيل الطلبات</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div>
+                <h2>3. جدول زمني أولي (مخطط جانت)</h2>
+                <div class="gantt-chart">
+                    <div class="gantt-bar" style="width: 15%">دراسة السوق (١٥ يوم)</div>
+                    <div class="gantt-bar" style="width: 30%">تجهيز المكتب والمستودع (٣٠ يوم)</div>
+                    <div class="gantt-bar" style="width: 20%">التعاقد مع الموردين (٢٠ يوم)</div>
+                    <div class="gantt-bar" style="width: 15%">بدء التوزيع التجريبي (١٥ يوم)</div>
+                </div>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>المهمة</th>
+                            <th>المدة</th>
+                            <th>الموارد المعنية</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>دراسة السوق</td>
+                            <td>١٥ يوم</td>
+                            <td>المدير</td>
+                        </tr>
+                        <tr>
+                            <td>تجهيز المكتب والمستودع</td>
+                            <td>٣٠ يوم</td>
+                            <td>المدير، عامل المستودع</td>
+                        </tr>
+                        <tr>
+                            <td>التعاقد مع الموردين</td>
+                            <td>٢٠ يوم</td>
+                            <td>المدير</td>
+                        </tr>
+                        <tr>
+                            <td>بدء التوزيع التجريبي</td>
+                            <td>١٥ يوم</td>
+                            <td>الفريق كامل</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="page-nav">
+                <button class="nav-btn prev" data-prev="page1"><i class="fas fa-arrow-right"></i> السابق</button>
+                <button class="nav-btn next" data-next="page3">التالي <i class="fas fa-arrow-left"></i></button>
+            </div>
+        </section>
+        
+        <!-- الصفحة 3: الخطة المالية وإدارة التكاليف -->
+        <section id="page3" class="page">
+            <h1><i class="fas fa-chart-pie"></i> الصفحة 3: الخطة المالية وإدارة التكاليف</h1>
+            
+            <div>
+                <h2>1. تقدير التكاليف</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>البند</th>
+                            <th>التكلفة الشهرية (ريال)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>إيجار مكتب ومستودع</td>
+                            <td>١٠٠٠٠</td>
+                        </tr>
+                        <tr>
+                            <td>رواتب الموظفين</td>
+                            <td>٣٠٠٠٠</td>
+                        </tr>
+                        <tr>
+                            <td>إيجار سيارتين</td>
+                            <td>٨٠٠٠</td>
+                        </tr>
+                        <tr>
+                            <td>رسوم استيراد وشحن</td>
+                            <td>٥٠٠٠</td>
+                        </tr>
+                        <tr>
+                            <td><strong>الإجمالي التقريبي</strong></td>
+                            <td><strong>٥٣٠٠٠</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div>
+                <h2>2. خطة المخاطر (Risk Plan)</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>المخاطرة</th>
+                            <th>التأثير</th>
+                            <th>الإجراء الوقائي</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>تلف البضاعة</td>
+                            <td>متوسط</td>
+                            <td>تخزين مدروس، تأمين على البضاعة</td>
+                        </tr>
+                        <tr>
+                            <td>ضعف التغطية السوقية</td>
+                            <td>مرتفع</td>
+                            <td>دراسة ميدانية مستمرة، توسع تدريجي</td>
+                        </tr>
+                        <tr>
+                            <td>مشاكل في التدفق النقدي</td>
+                            <td>مرتفع</td>
+                            <td>مراقبة المصروفات، سياسة دفع آمنة</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div>
+                <h2>3. خطة القبول (Acceptance Plan)</h2>
+                <div class="highlight-box">
+                    <h3>معايير النجاح:</h3>
+                    <p>تحقيق تغطية ٥٠ محل في الأشهر الثلاثة الأولى.</p>
+                    
+                    <h3>مؤشرات الأداء:</h3>
+                    <ul>
+                        <li>عدد الطلبات اليومية</li>
+                        <li>نسبة الأرباح إلى التكلفة</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="page-nav">
+                <button class="nav-btn prev" data-prev="page2"><i class="fas fa-arrow-right"></i> السابق</button>
+                <button class="nav-btn next" data-next="page4">التالي <i class="fas fa-arrow-left"></i></button>
+            </div>
+        </section>
+        
+        <!-- الصفحة 4: بناء خطة المشروع باستخدام أدوات رقمية -->
+        <section id="page4" class="page">
+            <h1><i class="fas fa-laptop-code"></i> الصفحة 4: بناء خطة المشروع باستخدام أدوات رقمية</h1>
+            
+            <div>
+                <h2>1. استخدام تطبيق GanttProject</h2>
+                <ul>
+                    <li>إنشاء مشروع باسم "مؤسسة التوزيع الصغيرة"</li>
+                    <li>إدخال المهام والمواعيد كما في الجدول الزمني</li>
+                    <li>إضافة المعالم الرئيسية (Milestones):
+                        <ul>
+                            <li>انتهاء دراسة السوق</li>
+                            <li>بدء التشغيل الفعلي</li>
+                            <li>تحقيق أول أرباح</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            
+            <div>
+                <h2>2. تحديد التبعيات بين المهام</h2>
+                <p>تبعية من نوع Finish to Start:</p>
+                <ul>
+                    <li>لا يمكن بدء التوزيع قبل تجهيز المستودع</li>
+                    <li>لا يمكن تعيين المندوبين قبل توفر السيارات</li>
+                </ul>
+            </div>
+            
+            <div>
+                <h2>3. تعيين الموارد في التطبيق</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>الخطوة</th>
+                            <th>التفاصيل</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>إدخال الموارد</td>
+                            <td>إدخال أسماء الموظفين وأدوارهم</td>
+                        </tr>
+                        <tr>
+                            <td>تخصيص المهام</td>
+                            <td>تخصيص المهام لكل عضو في الفريق</td>
+                        </tr>
+                        <tr>
+                            <td>تحديد الجدول الزمني</td>
+                            <td>ربط المهام بالجدول الزمني للمشروع</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="page-nav">
+                <button class="nav-btn prev" data-prev="page3"><i class="fas fa-arrow-right"></i> السابق</button>
+                <button class="nav-btn next" data-next="page5">التالي <i class="fas fa-arrow-left"></i></button>
+            </div>
+        </section>
+        
+        <!-- الصفحة 5: إدارة المهام والمراقبة -->
+        <section id="page5" class="page">
+            <h1><i class="fas fa-tasks"></i> الصفحة 5: إدارة المهام والمراقبة</h1>
+            
+            <div>
+                <h2>1. مؤشرات التقدم</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>المؤشر</th>
+                            <th>طريقة القياس</th>
+                            <th>الهدف</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>نسبة الإنجاز الشهرية</td>
+                            <td>مقارنة المهام المكتملة بالجدول الزمني</td>
+                            <td>85% شهرياً</td>
+                        </tr>
+                        <tr>
+                            <td>عدد المحلات المغطاة أسبوعياً</td>
+                            <td>سجلات المندوبين وتقارير المبيعات</td>
+                            <td>10 محلات أسبوعياً</td>
+                        </tr>
+                        <tr>
+                            <td>نسبة دوران المخزون</td>
+                            <td>المخزون المباع ÷ متوسط المخزون</td>
+                            <td>2.5 دورة شهرياً</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div>
+                <h2>2. آليات المراقبة</h2>
+                <ul>
+                    <li>اجتماع أسبوعي لفريق المشروع</li>
+                    <li>تقارير يومية من المندوبين</li>
+                    <li>تحديث مخطط جانت أسبوعياً</li>
+                    <li>مراجعة المؤشرات المالية شهرياً</li>
+                </ul>
+            </div>
+            
+            <div>
+                <h2>3. تحديات متوقعة وإجراءات تصحيحية</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>التحدي</th>
+                            <th>الإجراء التصحيحي المقترح</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>تأخر شحن البضاعة</td>
+                            <td>التعاقد مع مورد احتياطي</td>
+                        </tr>
+                        <tr>
+                            <td>انخفاض المبيعات في منطقة</td>
+                            <td>تعديل خطط التوزيع، عروض ترويجية</td>
+                        </tr>
+                        <tr>
+                            <td>ارتفاع تكاليف التشغيل</td>
+                            <td>مراجعة العقود والتفاوض مع الموردين</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="page-nav">
+                <button class="nav-btn prev" data-prev="page4"><i class="fas fa-arrow-right"></i> السابق</button>
+                <button class="nav-btn next" data-next="page6">التالي <i class="fas fa-arrow-left"></i></button>
+            </div>
+        </section>
+        
+        <!-- الصفحة 6: استراتيجية النمو والتوسع -->
+        <section id="page6" class="page">
+            <h1><i class="fas fa-expand-alt"></i> الصفحة 6: استراتيجية النمو والتوسع</h1>
+            
+            <div>
+                <h2>1. مراحل النمو</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>المرحلة</th>
+                            <th>المدة</th>
+                            <th>الأهداف</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>المرحلة الأولى</td>
+                            <td>٦ أشهر</td>
+                            <td>تركيز على مناطق محددة، منتجات أساسية</td>
+                        </tr>
+                        <tr>
+                            <td>المرحلة الثانية</td>
+                            <td>سنة</td>
+                            <td>زيادة عدد المندوبين والسيارات، إدخال منتجات جديدة</td>
+                        </tr>
+                        <tr>
+                            <td>المرحلة الثالثة</td>
+                            <td>سنتين</td>
+                            <td>شراء شاحنة توزيع، التحول إلى شركة رسمية</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div>
+                <h2>2. خطة التواصل (Communications Plan)</h2>
+                <ul>
+                    <li>التواصل الدوري مع الموردين والعملاء</li>
+                    <li>تقارير شهرية لأصحاب المصلحة</li>
+                    <li>استخدام وسائل التواصل الاجتماعي للتسويق</li>
+                    <li>نظام شكاوى ومقترحات للعملاء</li>
+                </ul>
+            </div>
+            
+            <div class="highlight-box">
+                <h2>3. الخلاصة</h2>
+                <p>المشروع يتبع منهجية إدارة المشروعات الواردة في كتاب المهارات الرقمية:</p>
+                <ul>
+                    <li><strong>التخطيط:</strong> دراسة السوق، تحديد الموارد، وضع الجدول الزمني</li>
+                    <li><strong>التنفيذ:</strong> بناء الفريق، بدء التشغيل</li>
+                    <li><strong>المراقبة:</strong> تقييم الأداء، إجراء التعديلات</li>
+                    <li><strong>النمو:</strong> التوسع التدريجي بناءً على النتائج</li>
+                </ul>
+            </div>
+            
+            <div class="page-nav">
+                <button class="nav-btn prev" data-prev="page5"><i class="fas fa-arrow-right"></i> السابق</button>
+                <button class="nav-btn next disabled" disabled>النهاية <i class="fas fa-check"></i></button>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <i class="fas fa-chart-line"></i> مؤسسة التوزيع الذكي
+            </div>
+            <p>مشروع مؤسسة تجارية صغيرة قابلة للنمو - وفق منهج كتاب المهارات الرقمية – الصف الثالث الثانوي</p>
+            <p>جميع الحقوق محفوظة &copy; 2023</p>
+            <div style="margin-top: 20px;">
+                <i class="fas fa-phone" style="margin-left: 15px;"></i> ٠٥٠١٢٣٤٥٦٧
+                <i class="fas fa-envelope" style="margin-left: 15px;"></i> info@tawzeea.com
+                <i class="fas fa-map-marker-alt" style="margin-left: 15px;"></i> المملكة العربية السعودية
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // التنقل بين الصفحات
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pages = document.querySelectorAll('.page');
+            const indicatorDots = document.querySelectorAll('.indicator-dot');
+            const nextButtons = document.querySelectorAll('.nav-btn.next');
+            const prevButtons = document.querySelectorAll('.nav-btn.prev');
+            
+            // وظيفة لعرض صفحة معينة
+            function showPage(pageId) {
+                // إخفاء جميع الصفحات
+                pages.forEach(page => {
+                    page.classList.remove('active');
+                });
+                
+                // إزالة النشاط من جميع روابط التنقل
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                });
+                
+                // إزالة النشاط من جميع نقاط المؤشر
+                indicatorDots.forEach(dot => {
+                    dot.classList.remove('active');
+                });
+                
+                // إظهار الصفحة المطلوبة
+                document.getElementById(pageId).classList.add('active');
+                
+                // تفعيل رابط التنقل المناسب
+                document.querySelector(`.nav-link[data-page="${pageId}"]`).classList.add('active');
+                
+                // تفعيل نقطة المؤشر المناسبة
+                document.querySelector(`.indicator-dot[data-page="${pageId}"]`).classList.add('active');
+            }
+            
+            // إضافة حدث النقر لروابط التنقل
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const pageId = this.getAttribute('data-page');
+                    showPage(pageId);
+                });
+            });
+            
+            // إضافة حدث النقر لنقاط المؤشر
+            indicatorDots.forEach(dot => {
+                dot.addEventListener('click', function() {
+                    const pageId = this.getAttribute('data-page');
+                    showPage(pageId);
+                });
+            });
+            
+            // إضافة حدث النقر لأزرار التالي
+            nextButtons.forEach(button => {
+                if (!button.classList.contains('disabled')) {
+                    button.addEventListener('click', function() {
+                        const nextPage = this.getAttribute('data-next');
+                        if (nextPage) {
+                            showPage(nextPage);
+                        }
+                    });
+                }
+            });
+            
+            // إضافة حدث النقر لأزرار السابق
+            prevButtons.forEach(button => {
+                if (!button.classList.contains('disabled')) {
+                    button.addEventListener('click', function() {
+                        const prevPage = this.getAttribute('data-prev');
+                        if (prevPage) {
+                            showPage(prevPage);
+                        }
+                    });
+                }
+            });
+            
+            // تحريك العناصر عند التمرير
+            window.addEventListener('scroll', function() {
+                const tables = document.querySelectorAll('table');
+                const scrollPosition = window.scrollY + window.innerHeight;
+                
+                tables.forEach(table => {
+                    const tablePosition = table.offsetTop;
+                    if (scrollPosition > tablePosition + 100) {
+                        table.style.animation = 'slideIn 0.5s ease';
+                    }
+                });
+            });
+            
+            // إضافة تأثيرات للجداول عند التحميل
+            setTimeout(() => {
+                const tables = document.querySelectorAll('table');
+                tables.forEach((table, index) => {
+                    setTimeout(() => {
+                        table.style.animation = 'slideIn 0.5s ease';
+                    }, index * 100);
+                });
+            }, 500);
+        });
+    </script>
+</body>
+</html>
